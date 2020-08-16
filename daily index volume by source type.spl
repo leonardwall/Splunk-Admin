@@ -1,0 +1,7 @@
+index=_internal source=*metrics.log
+series=wineventlog:security
+| eval formatted_time=strftime(_time, "%x")
+| Rename series as sourcetypes
+| chart sum(kb) over sourcetypes by formatted_time
+| sort - [ makeresults | addinfo | eval time="\"".strftime(info_max_time-1, "%x")."\"" | return $time]
+| foreach */* [eval "<<FIELD>>"=round('<<FIELD>>'/1024/1024,2)." GB"]
