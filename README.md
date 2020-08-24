@@ -1,2 +1,2 @@
-# Splunk-SPL
-Commonly used SPL queries 
+# Splunk-Admin
+Tools I use for Splunk Administration.
